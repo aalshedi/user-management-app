@@ -1,0 +1,49 @@
+<h1>Student List</h1>
+
+<!-- Search Bar -->
+<input type="text" [(ngModel)]="searchText" placeholder="Search by name" />
+
+<!-- Page Length -->
+<label for="pageLength">Page Length:</label>
+<select id="pageLength" [(ngModel)]="selectedPageLength">
+  <option value="5">5</option>
+  <option value="10">10</option>
+  <option value="15">15</option>
+</select>
+
+<!-- Table -->
+<table>
+  <thead>
+    <tr>
+      <th (click)="sort('id')">ID</th>
+      <th (click)="sort('name')">Name</th>
+      <th (click)="sort('age')">Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of paginatedStudents">
+      <td>{{ student.Enrollment }}</td>
+      <td>{{ student.Name }}</td>
+      <td>{{ student.Age }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Pagination -->
+<div>
+  <button (click)="previousPage()">Previous</button>
+  <span>{{ currentPage }}</span>
+  <button (click)="nextPage()">Next</button>
+</div>
+
+<!-- Number of Entries -->
+<div>
+  <label for="entries">Entries:</label>
+  <input
+    id="entries"
+    type="number"
+    [(ngModel)]="numberOfEntries"
+    min="1"
+    (change)="updatePage()"
+  />
+</div>
